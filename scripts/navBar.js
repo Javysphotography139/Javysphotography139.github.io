@@ -10,7 +10,7 @@ function myFunction() {
 window.addEventListener('scroll', function (evt) {
     let nav = document.getElementById("myTopnav");
     if (window.pageYOffset >= (window.innerHeight - 200)) {
-        nav.style.backgroundColor = "#000";
+        nav.style.backgroundColor = "#1F75FE";
         nav.style.visibility = "visible"
         nav.style.opacity = 1;
         nav.style.transition = "visibility 0.5s, opacity 0.5s linear";
