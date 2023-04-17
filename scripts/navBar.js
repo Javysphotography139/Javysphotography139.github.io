@@ -1,5 +1,5 @@
 function myFunction() {
-    var x = document.getElementById("myTopnav");
+    const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";
         x.style.position = "fixed"
@@ -8,7 +8,7 @@ function myFunction() {
     }
 }
 window.addEventListener('scroll', function (evt) {
-    let nav = document.getElementById("myTopnav");
+    const nav = document.getElementById("myTopnav");
     if (window.pageYOffset >= (window.innerHeight - 200)) {
         nav.style.backgroundColor = "#1F75FE";
         nav.style.visibility = "visible"
@@ -38,6 +38,18 @@ function onContactClick() {
 }
 
 function closeMobileNav() {
-    var ul = document.getElementsByClassName('topnav')[0];
+    const ul = document.getElementsByClassName('topnav')[0];
     ul.className = "topnav";
+}
+
+function openModel(img) {
+    const modal = document.getElementById('myModal');
+    modal.style.display = "block";
+    const modalImg = document.getElementById("img01");
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+}
+function closeModel(img) {
+    const modal = document.getElementById('myModal');
+    modal.style.display = "none";
 }

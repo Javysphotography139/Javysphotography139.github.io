@@ -130,6 +130,14 @@ hr {
     height: 100%;
     object-fit: cover;
     object-position: center;
+
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.gallery-item__image:hover {
+    opacity: 0.7;
 }
 
 .about-me {
@@ -159,26 +167,6 @@ hr {
     display: block;
     width: 80%;
     max-width: 700px;
-}
-
-/* Caption of Modal Image */
-#caption {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-    text-align: center;
-    color: #ccc;
-    padding: 10px 0;
-    height: 150px;
-}
-
-/* Add Animation */
-.modal-content, #caption {    
-    -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.6s;
-    animation-name: zoom;
-    animation-duration: 0.6s;
 }
 
 @-webkit-keyframes zoom {

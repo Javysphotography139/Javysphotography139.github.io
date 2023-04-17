@@ -59,37 +59,37 @@
     </div>
     <section id="photos">
         <div class="gallery">
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_1.jpeg" alt="bird">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_1.jpeg" alt="bird" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_2.jpeg" alt="flower">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_2.jpeg" alt="flower" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_3.jpeg" alt="umbrella">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_3.jpeg" alt="umbrella" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_4.jpeg" alt="oyster">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_4.jpeg" alt="oyster" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_5.jpeg" alt="trap">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_5.jpeg" alt="trap" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_6.jpeg" alt="fire">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_6.jpeg" alt="fire" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_7.jpeg" alt="mountain lake">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_7.jpeg" alt="mountain lake" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_8.jpeg" alt="mountain">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_8.jpeg" alt="mountain" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_9.jpeg" alt="mets">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_9.jpeg" alt="mets" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_10.jpeg" alt="lily">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_10.jpeg" alt="lily" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_11.jpeg" alt="dock">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_11.jpeg" alt="dock" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_12.jpeg" alt="mountain snow">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_12.jpeg" alt="mountain snow" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_13.JPG" alt="sunset">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_13.JPG" alt="sunset" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_14.jpg" alt="lake">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_14.jpg" alt="lake" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_15.jpg" alt="bridge">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_15.jpg" alt="bridge" onclick=openModel(this)>
             </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_16.jpeg" alt="lighthouse">
+            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_16.jpeg" alt="lighthouse" onclick=openModel(this)>
             </figure>
         </div>
     </section>
@@ -100,10 +100,9 @@
     <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLScxvugJZeRgFJOiORVcEVMAqQpdwSfILAy81u-pfSTJkn0UBg/viewform?embedded=true"
         width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    <div id="myModal" class="modal">
-        <span class="close">×</span>
+    <div id="myModal" class="modal" onclick=closeModel()>
+        <span class="close" onclick=closeModel()>×</span>
         <img class="modal-content" id="img01">
-        <div id="caption"></div>
     </div>
 </body>
 </html>
