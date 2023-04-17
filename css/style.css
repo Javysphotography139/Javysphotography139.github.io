@@ -16,7 +16,7 @@ html {
 
 .bgimg {
     background-color: #1F75FE;
-    background-image: url("../images/photo_2.jpeg");
+    background-image: url("../images/photo_4.jpeg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -36,12 +36,6 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.icons {
-    display: flex;
-    vertical-align: middle;
     text-align: center;
 }
 
@@ -98,6 +92,11 @@ h1 {
     display: none;
 }
 
+.icon:hover {
+    opacity: 0.7;
+    cursor:pointer;
+}
+
 hr {
     margin: auto;
     width: 60%;
@@ -143,8 +142,8 @@ hr {
 .about-me {
     background-color: white;
     font-family: 'Roboto', sans-serif;
-    font-size:      40px;
-    padding: 100px;
+    font-size: 25px;
+    padding: 200px;
 }
 
 .modal {
@@ -230,7 +229,7 @@ hr {
 
     .bgimg {
         background-color: #1F75FE;
-        background-image: url("../images/photo_2.jpeg");
+        background-image: url("../images/photo_4.jpeg");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center;
