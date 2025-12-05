@@ -8,7 +8,7 @@
 }
 
 :root {
-  --brand: #1F75FE;
+  --brand: #072187;
   --brand-600: #266bf3;
   --text: #0f172a;
   --text-muted: #475569;
@@ -238,7 +238,7 @@ section { scroll-margin-top: 4.5rem; } /* account for fixed nav when jumping */
   position: relative;
   isolation: isolate;
   /* Background */
-  background-image: url("../images/photo_4.jpeg");
+  background-image: url("../images/photo_11.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
