@@ -1,5 +1,7 @@
 # Git ignore for a static site (GitHub Pages) with Node-based scripts
+
 # Keeps site assets (images, CNAME, CSS/JS) tracked while ignoring OS/editor cruft and local tooling caches
+package-lock.json
 
 # ——— Node / tooling ———
 node_modules/

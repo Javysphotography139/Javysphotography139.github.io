@@ -1,7 +1,7 @@
-# robots.txt for https://javysphotography.org/
+# robots.txt for https://javysphotography139.github.io/
 # Allow all crawlers to index the site and provide sitemap location.
 
 User-agent: *
 Allow: /
 
-Sitemap: https://javysphotography.org/sitemap.xml
+Sitemap: https://javysphotography139.github.io/sitemap.xml
