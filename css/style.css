@@ -45,12 +45,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optional display face used previously */
-@font-face {
-  font-family: 'old-london';
-  src: url('/old-london/OldLondon.ttf') format('truetype');
-  font-display: swap;
-}
 
 /* Utilities */
 .container {
@@ -153,7 +147,7 @@ h1, h2 {
   font-size: clamp(1.1rem, 2.2vw, 1.5rem);
   font-weight: 700;
   letter-spacing: .02em;
-  font-family: 'old-london', 'Roboto', sans-serif;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
 }
 
 
@@ -278,16 +272,53 @@ section { scroll-margin-top: 4.5rem; } /* account for fixed nav when jumping */
 
 
 .middle .headline {
-  font-family: 'old-london', 'Roboto', sans-serif;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  color: #e2e8f0;
+  margin: 0.25rem 0 0;
+  letter-spacing: .01em;
 }
 
 .hero-actions {
   display: inline-flex;
   gap: .75rem;
   margin-top: .75rem;
+}
+
+/* Social links styling (ported) */
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06); /* equivalent to --surface */
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  text-decoration: none;
+}
+
+.social-links img {
+  width: 28px;
+  height: 28px;
 }
 
 .hero-cta {
@@ -344,7 +375,7 @@ hr {
   background: transparent;
   color: var(--text);
   padding: 12px 16px;
-  font-family: 'old-london', 'Roboto', sans-serif;
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
   min-height: 48px;
   display: grid;
   align-items: center;
@@ -742,12 +773,6 @@ hr {
   transform: scale(1.05);
 }
 
-/* ========== Legacy class support kept for compatibility ========== */
-
-/* keep .bgimg base for hero card typography when old-london is used */
-.bgimg {
-  font-family: 'old-london', 'Roboto', sans-serif;
-}
 
 /* ========== Media Queries / Reduced Motion ========== */
 
