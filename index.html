@@ -359,8 +359,9 @@
         <h2 id="contact-heading">Contact</h2>
       </div>
       <div class="contact">
+        <div id="form-success" class="alert alert-success" role="status" aria-live="polite" hidden tabindex="-1">Thank you! Your message has been sent.</div>
         <form class="contact-form" action="https://formsubmit.co/javysphotography139@gmail.com" method="POST">
-          <input type="hidden" name="_next" value="https://javysphotography.org/#contact">
+          <input type="hidden" name="_next" value="https://javysphotography.org/?contact=sent#contact">
           <input type="hidden" name="_subject" value="New message from javysphotography.org">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
@@ -389,6 +390,37 @@
   </div>
 
   <script src="scripts/navBar.js" defer></script>
+  <script>
+    (function () {
+      // Show success message when redirected back with ?contact=sent
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('contact') === 'sent') {
+        const el = document.getElementById('form-success');
+        if (el) {
+          el.hidden = false;
+          // Move focus to the success message for accessibility and visibility
+          try { el.focus({ preventScroll: true }); } catch(e) {}
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        // Clean the query param from the URL
+        params.delete('contact');
+        const newQuery = params.toString();
+        const newUrl = window.location.pathname + (newQuery ? '?' + newQuery : '') + window.location.hash;
+        history.replaceState(null, '', newUrl);
+      }
+      // Give immediate feedback on submit
+      const form = document.querySelector('.contact-form');
+      if (form) {
+        form.addEventListener('submit', function () {
+          const btn = form.querySelector('button[type="submit"]');
+          if (btn) {
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+          }
+        });
+      }
+    })();
+  </script>
   <footer class="site-footer">
     <div class="container">
       <p>© <span id="year"></span> Javy’s Photography • Westchester, NY</p>
