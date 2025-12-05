@@ -1,0 +1,7 @@
+# robots.txt for https://javysphotography.org/
+# Allow all crawlers to index the site and provide sitemap location.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://javysphotography.org/sitemap.xml

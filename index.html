@@ -1,108 +1,405 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Javy’s Photography</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="scripts/navBar.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Javy’s Photography | Westchester, NY Photographer</title>
+  <meta name="description"
+    content="Freelance photographer in Westchester, NY. Portraits, events, and landscapes by Rafael Javier Jr.">
+  <meta name="theme-color" content="#1F75FE">
+  <meta name="color-scheme" content="light">
+  <meta property="og:title" content="Javy’s Photography">
+  <meta property="og:description" content="Beauty is all around us, you just have to know how to capture it.">
+  <meta property="og:image" content="images/photo_4.jpeg">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://javysphotography.org/">
+  <meta property="og:url" content="https://javysphotography.org/">
+  <meta property="og:site_name" content="Javy’s Photography">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Javy’s Photography">
+  <meta name="twitter:description" content="Beauty is all around us, you just have to know how to capture it.">
+  <meta name="twitter:image" content="images/photo_4.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/photo_4.jpeg">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/web-app-manifest-512x512.png">
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rafael Javier Jr.",
+    "alternateName": "Javy’s Photography",
+    "jobTitle": "Photographer",
+    "url": "https://javysphotography.org/",
+    "image": "https://javysphotography.org/images/photo_4.jpeg",
+    "email": "mailto:javysphotography139@gmail.com",
+    "sameAs": [
+      "https://www.instagram.com/javysphotography/?igshid=YmMyMTA2M2Y%3D"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Westchester",
+      "addressRegion": "NY",
+      "addressCountry": "US"
+    }
+  }
+  </script>
 </head>
 
-
 <body>
-    <div id="myTopnav" class="topnav">
-        <a href="#home" onclick="closeMobileNav()">Javy’s Photography</a>
-        <a href="#aboutme" onclick="closeMobileNav()">About Me</a>
-        <a href="#gallery" onclick="closeMobileNav()">Gallery</a>
-        <a href="#contact" onclick="closeMobileNav()">Contact</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-    </div>
-    <a name="home"></a>
-    <div class="bgimg">
-        <div class="middle">
-            <h1>Javy’s Photography</h1>
-            <a href="mailto:javysphotography139@gmail.com">
-                <img class="icon" src="images/close-envelope.svg" width="50" height="50" alt="email_icon">
-            </a>
-            <a href="https://www.instagram.com/javysphotography/?igshid=YmMyMTA2M2Y%3D" target="_blank">
-                <img class="icon" src="images/instagram.png" width="50" height="50" alt="instagram_icon">
-            </a>
-            <hr>
-            <p id="demo" style="font-size:30px"></p>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header>
+    <nav id="myTopnav" class="topnav" aria-label="Primary">
+      <a class="brand" href="#home">Javy’s Photography</a>
+
+      <a href="#" class="menu-toggle icon" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false"
+        aria-controls="primaryNav">
+        ☰ Menu
+      </a>
+
+      <ul id="primaryNav" class="nav-list">
+        <li><a href="#aboutme">About Me</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="home" tabindex="-1">
+    <div id="main-content" tabindex="-1"></div>
+    <section class="bgimg hero" aria-label="Intro">
+      <div class="middle">
+        <h1 class="headline reveal">Javy’s Photography</h1>
+        <div class="hero-actions">
+          <a class="social" href="mailto:javysphotography139@gmail.com" aria-label="Email">
+            <img class="icon" src="images/close-envelope.svg" width="50" height="50" alt="email icon">
+          </a>
+          <a class="social" href="https://www.instagram.com/javysphotography/?igshid=YmMyMTA2M2Y%3D" target="_blank"
+            rel="noopener noreferrer" aria-label="Instagram">
+            <img class="icon" src="images/instagram.png" width="50" height="50" alt="instagram icon">
+          </a>
         </div>
-    </div>
-    <div class="heading">
-        <a name="aboutme"></a>
-        <h2>About Me</h2>
-    </div>
-    <div class="about-me">
-        <p>Javy’s Photography by Rafael Javier Jr.</p>
-        <br>
-        <p>
-            Rafael is a freelance photographer, who resides in Westchester, NY. After retiring from the Marine Corps,
-            Rafael became an ENL teacher in the Bronx. While working with students, he found an interest in art,
-            specifically drawing, painting, and photography. To pursue this passion, Rafael attended The New School,
-            where he learned how to shoot with a professional camera. He has a unique style and vision that is captured
-            through his work. Rafael approaches each session with professionalism and his love for photography.
-        </p>
-        <br>
-        <p>Thank you for your time. I look forward to creating lifelong memories for you and your family! </p>
-        <br>
-        <p><a href="mailto:javysphotography139@gmail.com">javysphotography139@gmail.com</a></p>
-        <br>
-        <p>Beauty is all around us, you just have to know how to capture it.</p>
-        <br>
-    </div>
-    <a name="gallery"></a>
-    <div class="heading">
-        <h2>Gallery</h2>
-    </div>
-    <section id="photos">
-        <div class="gallery">
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_1.jpeg" alt="bird" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_2.jpeg" alt="flower" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_3.jpeg" alt="umbrella" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_4.jpeg" alt="oyster" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_5.jpeg" alt="trap" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_6.jpeg" alt="fire" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_7.jpeg" alt="mountain lake" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_8.jpeg" alt="mountain" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_9.jpeg" alt="mets" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_10.jpeg" alt="lily" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_11.jpeg" alt="dock" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_12.jpeg" alt="mountain snow" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_13.JPG" alt="sunset" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_14.jpg" alt="lake" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_15.jpg" alt="bridge" onclick=openModel(this)>
-            </figure>
-            <figure class="gallery-item"><img class="gallery-item__image" src="images/photo_16.jpeg" alt="lighthouse" onclick=openModel(this)>
-            </figure>
+        <hr>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contact">Book a session</a>
         </div>
+      </div>
     </section>
-    <a name="contact"></a>
-    <div class="heading">
-        <h2>Contact</h2>
+
+    <section id="aboutme" aria-labelledby="aboutme-heading">
+      <div class="heading">
+        <h2 id="aboutme-heading">About Me</h2>
+      </div>
+      <div class="about-me reveal">
+        <p><strong>Javy's Photography - Rafael Javier Jr</strong></p>
+        <p>Rafael is a freelance photographer residing in Westchester, NY. After retiring from the Marine Corps, Rafael
+          became an ENL teacher in the Bronx. While working with students, he discovered an interest in art,
+          specifically drawing, painting, and photography. To pursue this passion, Rafael attended The New School, where
+          he honed his photography skills.</p>
+        <p>Rafael approaches each session with professionalism and a love for photography, capturing unique moments
+          through his lens.</p>
+        <p>Thank you for your time. I look forward to creating lifelong memories for you and your family!</p>
+        <p>Contact me: <a href="mailto:javysphotography139@gmail.com">javysphotography139@gmail.com</a></p>
+        <div class="quotes">
+          <blockquote>
+            <p>“Beauty is all around us, you just have to know how to capture it.”</p>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" aria-labelledby="services-heading" class="section">
+      <div class="heading">
+        <h2 id="services-heading">Services</h2>
+      </div>
+      <div class="container">
+        <div class="grid-cards">
+          <article class="card">
+            <h3>Portraits</h3>
+            <p>Studio and on‑location portrait sessions tailored to your style.</p>
+          </article>
+          <article class="card">
+            <h3>Events</h3>
+            <p>Weddings, celebrations, and corporate events captured with care.</p>
+          </article>
+          <article class="card">
+            <h3>Landscapes</h3>
+            <p>Fine art prints and commissions of the natural world.</p>
+          </article>
+        </div>
+        <p style="margin-top:1rem;">
+          <a class="btn btn-primary" href="#contact">Get a quote</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="gallery" aria-labelledby="gallery-heading">
+      <div class="heading">
+        <h2 id="gallery-heading">Gallery</h2>
+      </div>
+      <section id="photos">
+        <div class="gallery">
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_1@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_1@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_1@480.jpg" alt="bird" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_1@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_2@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_2@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_2@480.jpg" alt="flower" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_2@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_3@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_3@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_3@480.jpg" alt="umbrella"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_3@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_4@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_4@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_4@480.jpg" alt="oyster" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_4@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_5@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_5@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_5@480.jpg" alt="trap" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_5@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_6@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_6@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_6@480.jpg" alt="fire" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_6@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_7@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_7@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_7@480.jpg" alt="mountain lake"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_7@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_8@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_8@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_8@480.jpg" alt="mountain"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_8@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_9@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_9@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_9@480.jpg" alt="mets" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_9@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_10@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_10@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_10@480.jpg" alt="lily" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_10@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_11@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_11@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_11@480.jpg" alt="dock" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_11@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_12@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_12@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_12@480.jpg" alt="mountain snow"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_12@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_13@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_13@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_13@480.jpg" alt="sunset"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_13@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_14@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_14@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_14@480.jpg" alt="lake" loading="lazy"
+                decoding="async" data-full="images/optimized/large/photo_14@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_15@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_15@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_15@480.jpg" alt="bridge"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_15@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_16@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_16@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_16@480.jpg" alt="lighthouse"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_16@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_17@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_17@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_17@480.jpg" alt="photo 17"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_17@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_18@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_18@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_18@480.jpg" alt="photo 18"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_18@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_19@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_19@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_19@480.jpg" alt="photo 19"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_19@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_20@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_20@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_20@480.jpg" alt="photo 20"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_20@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_21@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_21@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_21@480.jpg" alt="photo 21"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_21@1600.jpg">
+            </picture>
+          </figure>
+          <figure class="gallery-item">
+            <picture>
+              <source type="image/avif" srcset="images/optimized/thumbs/photo_22@480.avif">
+              <source type="image/webp" srcset="images/optimized/thumbs/photo_22@480.webp">
+              <img class="gallery-item__image" src="images/optimized/thumbs/photo_22@480.jpg" alt="photo 22"
+                loading="lazy" decoding="async" data-full="images/optimized/large/photo_22@1600.jpg">
+            </picture>
+          </figure>
+        </div>
+      </section>
+    </section>
+
+    <section id="testimonials" aria-labelledby="testimonials-heading" class="section">
+      <div class="heading">
+        <h2 id="testimonials-heading">Testimonials</h2>
+      </div>
+      <div class="container">
+        <div class="quotes">
+          <blockquote>
+            <p>Rafael captured our wedding perfectly—every detail and emotion.</p>
+            <footer>— M. Rivera</footer>
+          </blockquote>
+          <blockquote>
+            <p>Professional, patient, and creative. The portraits exceeded expectations.</p>
+            <footer>— A. Thompson</footer>
+          </blockquote>
+          <blockquote>
+            <p>His eye for light and composition is outstanding. Highly recommend.</p>
+            <footer>— S. Patel</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="heading">
+        <h2 id="contact-heading">Contact</h2>
+      </div>
+      <div class="contact">
+        <form class="contact-form" action="https://formsubmit.co/javysphotography139@gmail.com" method="POST">
+          <input type="hidden" name="_next" value="https://javysphotography.org/#contact">
+          <input type="hidden" name="_subject" value="New message from javysphotography.org">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+
+          <button type="submit" aria-label="Send message">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="myModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Image viewer">
+    <button class="close" aria-label="Close image modal">×</button>
+    <button class="modal-nav prev" aria-label="Previous image" title="Previous image">‹</button>
+    <img class="modal-content" id="img01" alt="">
+    <button class="modal-nav next" aria-label="Next image" title="Next image">›</button>
+  </div>
+
+  <script src="scripts/navBar.js" defer></script>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Javy’s Photography • Westchester, NY</p>
+      <p>
+        <a href="mailto:javysphotography139@gmail.com">javysphotography139@gmail.com</a>
+        ·
+        <a href="https://www.instagram.com/javysphotography/?igshid=YmMyMTA2M2Y%3D" target="_blank"
+          rel="noopener">Instagram</a>
+      </p>
     </div>
-    <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLScxvugJZeRgFJOiORVcEVMAqQpdwSfILAy81u-pfSTJkn0UBg/viewform?embedded=true"
-        width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    <div id="myModal" class="modal" onclick=closeModel()>
-        <span class="close" onclick=closeModel()>×</span>
-        <img class="modal-content" id="img01">
-    </div>
+  </footer>
 </body>
+
 </html>
