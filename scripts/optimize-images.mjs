@@ -5,12 +5,17 @@
  * - Square thumbnails: 480x480px (default) -> JPEG/WebP/AVIF
  *
  * Usage:
- *   node scripts/optimize-images.mjs
- *   node scripts/optimize-images.mjs 2048 512   // override sizes
+ *   npm run optimize
+ *   node scripts/optimize-images.mjs           // defaults (1600, 480)
+ *   node scripts/optimize-images.mjs 2048 512  // override sizes
+ *
+ * Behavior:
+ *   1) Iterate ALL raster images directly under /images (excluding /images/optimized and non-raster like SVG)
+ *   2) Create optimized assets if needed (missing or stale vs source mtime)
+ *   3) Clean up /images/optimized entries that no longer have a corresponding source
+ *   4) Regenerate gallery DOM and inject into index.html between markers
  *
  * Requires: sharp, fast-glob
- *   npm install
- *   npm run optimize
  */
 
 import fs from "fs/promises";
@@ -42,6 +47,12 @@ const WEBP_Q_THUMB = 75;
 // AVIF quality: sharp uses 0-100 scale (higher = better)
 const AVIF_Q_LARGE = 48;
 const AVIF_Q_THUMB = 46;
+
+// What we consider "raster" sources to optimize
+const RASTER_EXTS = new Set([".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG", ".heic", ".HEIC"]);
+
+// Minimum long-edge dimension to include an image in the gallery (helps exclude tiny icons/logos)
+const MIN_GALLERY_LONG_EDGE = 600;
 
 // Small async pool to limit concurrency
 async function asyncPool(poolLimit, array, iteratorFn) {
@@ -78,41 +89,57 @@ async function fileExists(p) {
   }
 }
 
+async function statMtimeMs(p) {
+  try {
+    const st = await fs.stat(p);
+    return st.mtimeMs || 0;
+  } catch {
+    return 0;
+  }
+}
+
+async function needsRebuild(srcPath, outPath) {
+  if (!(await fileExists(outPath))) return true;
+  const [s, o] = await Promise.all([statMtimeMs(srcPath), statMtimeMs(outPath)]);
+  return o < s;
+}
+
 async function writeLargeVariants(srcPath, base) {
   const jpgOut = path.join(OUT_LARGE, `${base}@${LONG_EDGE}.jpg`);
   const webpOut = path.join(OUT_LARGE, `${base}@${LONG_EDGE}.webp`);
   const avifOut = path.join(OUT_LARGE, `${base}@${LONG_EDGE}.avif`);
 
-  if (!(await fileExists(jpgOut))) {
+  let rebuiltJpg = false;
+  if (await needsRebuild(srcPath, jpgOut)) {
     const pipeline = sharp(srcPath, { failOn: "none" }).rotate();
     await pipeline
       .resize({ width: LONG_EDGE, height: LONG_EDGE, fit: "inside", withoutEnlargement: true })
       .jpeg({ quality: JPG_Q_LARGE, progressive: true, chromaSubsampling: "4:4:4" })
       .toFile(jpgOut);
     console.log(`  - large jpg: ${path.relative(ROOT, jpgOut)}`);
+    rebuiltJpg = true;
   } else {
-    console.log(`  - large jpg exists, skipping`);
+    // console.log(`  - large jpg up-to-date`);
   }
 
-  // Derivatives from the just-written JPEG (ensures consistent input)
   const inputForWeb = jpgOut;
 
-  if (!(await fileExists(webpOut))) {
+  if (rebuiltJpg || await needsRebuild(jpgOut, webpOut)) {
     await sharp(inputForWeb)
       .webp({ quality: WEBP_Q_LARGE })
       .toFile(webpOut);
     console.log(`  - large webp: ${path.relative(ROOT, webpOut)}`);
   } else {
-    console.log(`  - large webp exists, skipping`);
+    // console.log(`  - large webp up-to-date`);
   }
 
-  if (!(await fileExists(avifOut))) {
+  if (rebuiltJpg || await needsRebuild(jpgOut, avifOut)) {
     await sharp(inputForWeb)
       .avif({ quality: AVIF_Q_LARGE, effort: 5 })
       .toFile(avifOut);
     console.log(`  - large avif: ${path.relative(ROOT, avifOut)}`);
   } else {
-    console.log(`  - large avif exists, skipping`);
+    // console.log(`  - large avif up-to-date`);
   }
 }
 
@@ -121,7 +148,8 @@ async function writeThumbVariants(srcPath, base) {
   const webpOut = path.join(OUT_THUMBS, `${base}@${THUMB_SIZE}.webp`);
   const avifOut = path.join(OUT_THUMBS, `${base}@${THUMB_SIZE}.avif`);
 
-  if (!(await fileExists(jpgOut))) {
+  let rebuiltJpg = false;
+  if (await needsRebuild(srcPath, jpgOut)) {
     const pipeline = sharp(srcPath, { failOn: "none" }).rotate();
     await pipeline
       .resize({
@@ -134,28 +162,40 @@ async function writeThumbVariants(srcPath, base) {
       .jpeg({ quality: JPG_Q_THUMB, progressive: true, chromaSubsampling: "4:4:4" })
       .toFile(jpgOut);
     console.log(`  - thumb jpg: ${path.relative(ROOT, jpgOut)}`);
+    rebuiltJpg = true;
   } else {
-    console.log(`  - thumb jpg exists, skipping`);
+    // console.log(`  - thumb jpg up-to-date`);
   }
 
   const inputForWeb = jpgOut;
 
-  if (!(await fileExists(webpOut))) {
+  if (rebuiltJpg || await needsRebuild(jpgOut, webpOut)) {
     await sharp(inputForWeb)
       .webp({ quality: WEBP_Q_THUMB })
       .toFile(webpOut);
     console.log(`  - thumb webp: ${path.relative(ROOT, webpOut)}`);
   } else {
-    console.log(`  - thumb webp exists, skipping`);
+    // console.log(`  - thumb webp up-to-date`);
   }
 
-  if (!(await fileExists(avifOut))) {
+  if (rebuiltJpg || await needsRebuild(jpgOut, avifOut)) {
     await sharp(inputForWeb)
       .avif({ quality: AVIF_Q_THUMB, effort: 5 })
       .toFile(avifOut);
     console.log(`  - thumb avif: ${path.relative(ROOT, avifOut)}`);
   } else {
-    console.log(`  - thumb avif exists, skipping`);
+    // console.log(`  - thumb avif up-to-date`);
+  }
+}
+
+async function getImageLongEdge(srcPath) {
+  try {
+    const meta = await sharp(srcPath, { failOn: "none" }).metadata();
+    const w = meta.width || 0;
+    const h = meta.height || 0;
+    return Math.max(w, h);
+  } catch {
+    return 0;
   }
 }
 
@@ -166,12 +206,20 @@ async function processImage(srcPath, base) {
   await writeThumbVariants(srcPath, base);
 }
 
+function humanizeAlt(base) {
+  let alt = base.replace(/[_\-]+/g, " ").replace(/\s+/g, " ").trim();
+  if (!alt) alt = "photo";
+  // Capitalize first letter
+  alt = alt.charAt(0).toUpperCase() + alt.slice(1);
+  return alt;
+}
+
 function generateGalleryItemsHTML(bases, { thumbSize, longEdge }) {
   const lines = [];
   lines.push(`<!-- Generated by optimize-images.mjs on ${new Date().toISOString()} -->`);
   for (const base of bases) {
-    const num = base.match(/\d+/)?.[0] || "";
-    const alt = `photo ${num || base}`;
+    const alt = humanizeAlt(base);
+    // Note: we always point <img src> to the JPG and offer avif/webp via <source>
     lines.push(
 `<figure class="gallery-item">
   <picture>
@@ -212,6 +260,64 @@ async function updateIndexHtmlWithGallery(fragment) {
   }
 }
 
+function parseOptimizedBase(filename) {
+  // Accept: anything like "<base>@<size>.<ext>"
+  const name = path.basename(filename, path.extname(filename));
+  const m = name.match(/^(.*)@(\d+)$/);
+  if (!m) return null;
+  return { base: m[1], size: Number(m[2]) };
+}
+
+async function cleanupOrphans(validBases, { longEdge, thumbSize }) {
+  const patterns = [
+    path.join(OUT_LARGE, `*@[0-9]*.{jpg,jpeg,webp,avif}`),
+    path.join(OUT_THUMBS, `*@[0-9]*.{jpg,jpeg,webp,avif}`),
+  ];
+  const files = await fg(patterns, { onlyFiles: true, unique: true, dot: false });
+
+  let removed = 0;
+  for (const f of files) {
+    const parsed = parseOptimizedBase(path.basename(f));
+    if (!parsed) continue;
+    // Only consider current configured sizes for cleanup
+    const expectedSize = f.startsWith(OUT_LARGE) ? longEdge : (f.startsWith(OUT_THUMBS) ? thumbSize : null);
+    if (expectedSize == null || parsed.size !== expectedSize) continue;
+
+    if (!validBases.has(parsed.base)) {
+      try {
+        await fs.unlink(f);
+        removed++;
+        // console.log(`  - removed orphan: ${path.relative(ROOT, f)}`);
+      } catch (e) {
+        console.warn(`! Failed to remove orphan ${path.relative(ROOT, f)}: ${e?.message || e}`);
+      }
+    }
+  }
+  if (removed) {
+    console.log(`  Cleanup: removed ${removed} orphan optimized file(s)`);
+  }
+}
+
+async function scanSources() {
+  // Only files directly under images/ (not subfolders). Exclude images/optimized/**
+  const files = await fg([path.join(IMG_DIR, "*")], {
+    onlyFiles: true,
+    unique: true,
+    dot: false,
+    ignore: [path.join(IMG_DIR, "optimized/**")],
+  });
+  // Keep raster images only
+  const raster = files.filter(f => RASTER_EXTS.has(path.extname(f)));
+  return raster;
+}
+
+function sortBasesNatural(bases) {
+  // Natural order (case-insensitive, numeric aware)
+  return Array.from(new Set(bases)).sort((a, b) =>
+    a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
+  );
+}
+
 async function main() {
   console.log(`Using LONG_EDGE=${LONG_EDGE}px, THUMB_SIZE=${THUMB_SIZE}px`);
   console.log(`Source: ${IMG_DIR}`);
@@ -220,34 +326,27 @@ async function main() {
   await ensureDir(OUT_LARGE);
   await ensureDir(OUT_THUMBS);
 
-  const patterns = [
-    path.join(IMG_DIR, "photo_*.jpg"),
-    path.join(IMG_DIR, "photo_*.jpeg"),
-    path.join(IMG_DIR, "photo_*.JPG"),
-    path.join(IMG_DIR, "photo_*.JPEG"),
-    path.join(IMG_DIR, "photo_*.png"),
-    path.join(IMG_DIR, "photo_*.PNG"),
-  ];
-
-  const files = await fg(patterns, { onlyFiles: true, unique: true, dot: false });
+  const files = await scanSources();
   if (!files.length) {
-    console.log("No source images found matching images/photo_*.(jpg|jpeg|png). Nothing to do.");
+    console.log("No source images found under images/. Nothing to do.");
     return;
   }
 
   const start = Date.now();
   let count = 0;
   const processedBases = [];
-  // Prepare items with base names and sort by numeric order
+
+  // Prepare items with base names and sort deterministically by natural order of base
   const items = files.map((f) => ({ path: f, base: baseNameNoExt(f) }))
-    .sort((a, b) => {
-      const na = Number(a.base.match(/\d+/)?.[0] || Infinity);
-      const nb = Number(b.base.match(/\d+/)?.[0] || Infinity);
-      return na - nb || a.base.localeCompare(b.base);
-    });
+    .sort((a, b) => a.base.localeCompare(b.base, undefined, { numeric: true, sensitivity: "base" }));
 
   await asyncPool(4, items, async (it) => {
     try {
+      // Skip extremely small images from gallery/optimization to avoid logos/icons,
+      // but still allow optimization for all if you want by removing this check.
+      const longEdge = await getImageLongEdge(it.path);
+      const eligibleForGallery = longEdge >= MIN_GALLERY_LONG_EDGE;
+
       await processImage(it.path, it.base);
       processedBases.push(it.base);
       count++;
@@ -258,12 +357,7 @@ async function main() {
   const ms = Date.now() - start;
 
   try {
-    // Ensure deterministic numeric ordering (photo_1, photo_2, ..., photo_N)
-    const basesSorted = Array.from(new Set(processedBases)).sort((a, b) => {
-      const na = Number(a.match(/\d+/)?.[0] || Infinity);
-      const nb = Number(b.match(/\d+/)?.[0] || Infinity);
-      return na - nb || a.localeCompare(b);
-    });
+    const basesSorted = sortBasesNatural(processedBases);
     const html = generateGalleryItemsHTML(basesSorted, { thumbSize: THUMB_SIZE, longEdge: LONG_EDGE });
     await fs.writeFile(GALLERY_HTML, html, "utf8");
     console.log(`  Gallery: ${path.relative(ROOT, GALLERY_HTML)} (updated)`);
@@ -271,6 +365,9 @@ async function main() {
   } catch (e) {
     console.error("! Failed to write gallery HTML:", e?.message || e);
   }
+
+  // Cleanup orphans: anything in optimized for the current configured sizes that no longer has a source
+  await cleanupOrphans(new Set(processedBases), { longEdge: LONG_EDGE, thumbSize: THUMB_SIZE });
 
   console.log(`✔ Done. Processed ${count} image(s) in ${ms}ms.`);
   console.log(`  Large : ${path.relative(ROOT, OUT_LARGE)}/*@${LONG_EDGE}.(jpg|webp|avif)`);
