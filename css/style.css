@@ -481,6 +481,8 @@ hr {
   transition: transform var(--t), opacity var(--t);
   cursor: zoom-in;
   border-radius: inherit; /* ensure focus ring follows rounded corners */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .gallery-item__image:hover {
@@ -740,6 +742,13 @@ hr {
   color: #ffffff;
   transform: translateY(-50%) scale(1.05);
   box-shadow: var(--elev-1);
+}
+
+/* Prevent double-tap zoom on interactive controls */
+.modal-nav,
+.close {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 @media (max-width: 700px) {

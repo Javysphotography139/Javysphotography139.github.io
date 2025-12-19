@@ -184,7 +184,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeModal);
+    // Prevent iOS double-tap zoom on close control
+    closeBtn.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeModal();
+    }, { passive: false });
+  }
   if (modal) {
     const prevBtn = modal.querySelector(".modal-nav.prev");
     const nextBtn = modal.querySelector(".modal-nav.next");
@@ -195,6 +203,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentIndex < 0) currentIndex = 0;
         showAtIndex(currentIndex - 1);
       });
+      // Prevent iOS double-tap zoom and ensure quick navigation on touch
+      prevBtn.addEventListener("touchend", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (currentIndex < 0) currentIndex = 0;
+        showAtIndex(currentIndex - 1);
+      }, { passive: false });
     }
 
     if (nextBtn) {
@@ -203,6 +218,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentIndex < 0) currentIndex = 0;
         showAtIndex(currentIndex + 1);
       });
+      // Prevent iOS double-tap zoom and ensure quick navigation on touch
+      nextBtn.addEventListener("touchend", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (currentIndex < 0) currentIndex = 0;
+        showAtIndex(currentIndex + 1);
+      }, { passive: false });
     }
 
     modal.addEventListener("click", (e) => {
