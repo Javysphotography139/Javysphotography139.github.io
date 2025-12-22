@@ -132,19 +132,29 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "hidden";
     if (mainEl) mainEl.setAttribute("aria-hidden", "true");
     if (closeBtn) closeBtn.focus();
-    // try optimized first, fallback on error
-    if (optimized) {
-      modalImg.onerror = () => {
-        modalImg.onerror = null;
-        modalImg.src = fallback;
-        modalImg.alt = img.alt || "";
-      };
-      modalImg.src = optimized;
+
+    // Prefer AVIF -> WebP -> JPEG for the modal image, with graceful fallback
+    const buildCandidates = (u) => {
+      if (!u) return [];
+      const m = u.match(/^(.*)\.(avif|webp|jpe?g|png)$/i);
+      const base = m ? m[1] : u;
+      return [`${base}.avif`, `${base}.webp`, `${base}.jpg`];
+    };
+    const candidates = [
+      ...buildCandidates(optimized),
+      ...(optimized ? [] : buildCandidates(fallback)),
+      fallback
+    ].filter(Boolean);
+
+    let i = 0;
+    const tryNext = () => {
+      if (i >= candidates.length) return;
+      const url = candidates[i++];
+      modalImg.onerror = tryNext;
+      modalImg.src = url;
       modalImg.alt = img.alt || "";
-    } else {
-      modalImg.src = fallback;
-      modalImg.alt = img.alt || "";
-    }
+    };
+    tryNext();
   }
 
   // Show specified gallery image by index (wrap around)

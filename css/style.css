@@ -238,7 +238,13 @@ section { scroll-margin-top: 4.5rem; } /* account for fixed nav when jumping */
   position: relative;
   isolation: isolate;
   /* Background */
-  background-image: url("../images/photo_11.jpeg");
+  /* Use optimized hero background with modern formats (fallback first) */
+  background-image: url("../images/optimized/large/photo_11@1600.jpg");
+  background-image: image-set(
+    url("../images/optimized/large/photo_11@1600.avif") type("image/avif") 1x,
+    url("../images/optimized/large/photo_11@1600.webp") type("image/webp") 1x,
+    url("../images/optimized/large/photo_11@1600.jpg") type("image/jpeg") 1x
+  );
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

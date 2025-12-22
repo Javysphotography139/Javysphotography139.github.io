@@ -225,7 +225,7 @@ function generateGalleryItemsHTML(bases, { thumbSize, longEdge }) {
   <picture>
     <source type="image/avif" srcset="images/optimized/thumbs/${base}@${thumbSize}.avif">
     <source type="image/webp" srcset="images/optimized/thumbs/${base}@${thumbSize}.webp">
-    <img class="gallery-item__image" src="images/optimized/thumbs/${base}@${thumbSize}.jpg" alt="${alt}" loading="lazy" decoding="async" data-full="images/optimized/large/${base}@${longEdge}.jpg">
+    <img class="gallery-item__image" src="images/optimized/thumbs/${base}@${thumbSize}.jpg" alt="${alt}" width="${thumbSize}" height="${thumbSize}" loading="lazy" decoding="async" data-full="images/optimized/large/${base}@${longEdge}.jpg">
   </picture>
 </figure>`);
   }
